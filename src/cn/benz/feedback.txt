@@ -1,0 +1,119 @@
+============================================
+vis/result.rtx
+20:14:21_Thursday_20_March_2014
+============================================
+Feedback:
+	Your program ("Nim.java") has been submitted successfully.
+
+	Compiling your program with "javac"...
+
+Nim.java:16: warning: unmappable character for encoding ASCII
+	 * Finally, it prints the ??Game over?? message.
+	                          ^
+Nim.java:16: warning: unmappable character for encoding ASCII
+	 * Finally, it prints the ??Game over?? message.
+	                           ^
+Nim.java:16: warning: unmappable character for encoding ASCII
+	 * Finally, it prints the ??Game over?? message.
+	                                     ^
+Nim.java:16: warning: unmappable character for encoding ASCII
+	 * Finally, it prints the ??Game over?? message.
+	                                      ^
+4 warnings
+		Your program has been result.rtxd successfully :-)
+
+Now, it's your responsibility to test your program for correctness!
+Here is a simple test case, and the results:
+
+============================================
+Test for input file: in1
+Expected results:							Your results:
+Welcome to Nim							     |	Exception in thread "main" java.lang.NoClassDefFoundError: Nim (wron
+								     |		at java.lang.ClassLoader.defineClass1(Native Method)
+Please enter initial number of stones:				     |		at java.lang.ClassLoader.defineClass(ClassLoader.java:620)
+								     |		at java.security.SecureClassLoader.defineClass(SecureClassLo
+15 stones left: * * * * * * * * * * * * * * *			     |		at java.net.URLClassLoader.defineClass(URLClassLoader.java:2
+Remove how many?						     |		at java.net.URLClassLoader.access$000(URLClassLoader.java:56
+								     |		at java.net.URLClassLoader$1.run(URLClassLoader.java:195)
+15 stones left: * * * * * * * * * * * * * * *			     |		at java.security.AccessController.doPrivileged(Native Method
+Remove how many?						     |		at java.net.URLClassLoader.findClass(URLClassLoader.java:188
+								     |		at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+14 stones left: * * * * * * * * * * * * * *			     |		at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:
+Remove how many?						     |		at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+								     |		at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:
+12 stones left: * * * * * * * * * * * *				     <
+Remove how many?						     <
+								     <
+9 stones left: * * * * * * * * *				     <
+Remove how many?						     <
+								     <
+5 stones left: * * * * *					     <
+Remove how many?						     <
+								     <
+Game Over							     <
+
+Oops, your results seem to be INCORRECT :-(
+
+============================================
+src/Nim.java
+20:14:20_Thursday_20_March_2014
+============================================
+package cn.benz;
+/* Nim.java
+ * This is a Nim game all in one class
+ * Designed and written by Benz
+ * 20/3/2014
+ */
+
+import java.util.Scanner;
+
+public class Nim {
+
+	/* The main method: It first prints out a welcome message 
+	 * and asks for the total number of stones. 
+	 * Then it repeatedly displays the remaining stones 
+	 * and asks the player to remove some stones until there is no stone left. 
+	 * Finally, it prints the ¡°Game over¡± message.
+	 * Comment above are directly copied from the lecture side.
+	*/
+
+	public static void main(String[] args) {
+		Scanner userInput = new Scanner(System.in);
+		
+		//welcome message
+		System.out.println("Welcome to Nim");
+		System.out.println();
+		
+		int numberOfStones = 0;
+		
+		//initialize number of stones
+		System.out.println("Please enter initial number of stones:");
+		numberOfStones = userInput.nextInt();
+		System.out.println("");
+		
+		boolean isLeft = true;
+		
+		//let user remove stones
+		while (isLeft) {
+			//print the number
+			System.out.print(numberOfStones + " stones left:" );
+			//print the "*" as stones
+			for (int i = numberOfStones; i > 0; i--) {
+				System.out.print(" *");
+			}
+			System.out.println();
+			//get user's input number
+			System.out.println("Remove how many?");
+			numberOfStones = numberOfStones - userInput.nextInt();
+			System.out.println();
+			
+			if (numberOfStones == 0) {
+				isLeft = false;
+			}//end if
+		}//end loop
+		
+		//the end of the Nim game
+		userInput.close();
+		System.out.println("Game Over");
+	}//end main
+}//end class
