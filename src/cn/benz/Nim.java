@@ -13,7 +13,7 @@ public class Nim {
 	 * and asks for the total number of stones. 
 	 * Then it repeatedly displays the remaining stones 
 	 * and asks the player to remove some stones until there is no stone left. 
-	 * Finally, it prints the ¡°Game over¡± message.
+	 * Finally, it prints the "Game over" message.
 	 * Comment above are directly copied from the lecture side.
 	*/
 
