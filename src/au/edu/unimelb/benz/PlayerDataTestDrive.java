@@ -1,26 +1,22 @@
 package au.edu.unimelb.benz;
 
-public class PlayerTestDrive {
+public class PlayerDataTestDrive {
 
 	public static void main(String[] args) {
 		String[] playerDetail = new String[5];
-		Player playerA = new Player();
+		PlayerData playerA = new PlayerData();
 		
-		playerDetail = playerA.getPlayer();
+		playerDetail = playerA.getData();
 		for (int i = 0; i < 5; i++) {
 			System.out.print(playerDetail[i] + " ");
 		}
 		
 		int played = 12;
 		int won = 5;
-		String[] playerNames = new String[3];
-		playerNames[0] = "benjamin";
-		playerNames[1] = "Chibin";
-		playerNames[2] = "Zhang";
-		playerA.setPlayer(playerNames);
+		playerA.setNames("benjamin", "Chibin", "Zhang");
 		playerA.setGames(played, won);
 		
-		playerDetail = playerA.getPlayer();
+		playerDetail = playerA.getData();
 		for (int i = 0; i < 5; i++) {
 			System.out.print(playerDetail[i] + " ");
 		}
