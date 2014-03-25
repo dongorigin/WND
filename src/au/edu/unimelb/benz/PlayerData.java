@@ -2,44 +2,55 @@ package au.edu.unimelb.benz;
 
 public class PlayerData {
 	private String username;
-	private String firstName;
 	private String familyName;
+	private String givenName;
 	private int playedNum;
 	private int wonNum;
 	
 	public PlayerData() {
 		username = "nimUser";
-		firstName = "John";
 		familyName = "Smith";
+		givenName = "John";
 		playedNum = 0;
 		wonNum = 0;
 	}
 	
-	public PlayerData(String userN, String firstN, String familyN) {
+	public PlayerData(String userN, String familyN, String givenN) {
 		this();
 		username = userN;
-		firstName = firstN;
 		familyName = familyN;
+		givenName = givenN;
 	}
 	
-	public void setNames(String userN, String firstN, String familyN) {
+	public void setNames(String userN, String familyN, String givenN) {
 		username = userN;
-		firstName = firstN;
 		familyName = familyN;
+		givenName = givenN;
 	}
 	
 	public String[] getData() {
 		String[] player = new String[5];
 		player[0] = username;
-		player[1] = firstName;
-		player[2] = familyName;
+		player[1] = familyName;
+		player[2] = givenName;
 		player[3] = Integer.toString(playedNum);
 		player[4] = Integer.toString(wonNum);
 		return player;
 	}
 	
-	public void setGames(int playedN, int wonN) {
-		playedNum += playedN;
-		wonNum += wonN;
+	public void finish(String result) {
+		playedNum ++;
+		if (result == "won") {
+			wonNum ++;
+		}
+	}
+	
+	public void resetNumbers() {
+		playedNum = 0;
+		wonNum = 0;
+	}
+	
+	public String getUsername() {
+		return username;
 	}
 }

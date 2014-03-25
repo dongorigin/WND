@@ -13,8 +13,8 @@ public class PlayerDataTestDrive {
 		
 		int played = 12;
 		int won = 5;
-		playerA.setNames("benjamin", "Chibin", "Zhang");
-		playerA.setGames(played, won);
+		playerA.setNames("benjamin", "Zhang", "Chibin");
+		//playerA.setGames(played, won);
 		
 		playerDetail = playerA.getData();
 		for (int i = 0; i < 5; i++) {
