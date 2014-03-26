@@ -12,6 +12,8 @@ public class IOInterface {
 	public IOInterface() {
 		System.out.println("Welcome to Nim");
 		System.out.println();
+		command = new String[2];
+		names = new String[3];
 		userInput = new Scanner(System.in);
 		nimSystem = new NimSys();
 		index = 0;
@@ -29,6 +31,7 @@ public class IOInterface {
 		}
 		System.out.print(playerData[3] + " games,");
 		System.out.print(playerData[4] + " wins");
+		System.out.println();
 	}
 	
 	public void comAddplayer() {
@@ -91,27 +94,34 @@ public class IOInterface {
 	
 	public void comDisplayplayer() {
 		if (command.length == 2) {
-			names[0] = command[1];
-			index = nimSystem.checkPosition(names[0]);
+			String username = command[1];
+			index = nimSystem.checkPosition(username);
 			if (index != -1) {
-				showPlayer(nimSystem.displayPlayer(index));
+				showPlayer(nimSystem.getPlayerData(index));
 			}else {
 				System.out.println("The player does not exist.");
 			}
 		} else {
-			int size = nimSystem.size();
-			for (int i = 0; i < size; i ++) {
-				showPlayer(nimSystem.displayPlayer(i));
+			for (int i = 0; i < nimSystem.size(); i ++) {
+				showPlayer(nimSystem.getPlayerData(i));
 			}
 		}
 		System.out.println();
+	}
+	
+	private void comRankings() {
+		String[] playerData = new String[5];
+		int rate = 0;
+		for (int i = 0; i < nimSystem.size(); i ++) {
+			playerData = nimSystem.getPlayerData(i);
+		}
 	}
 	
 	public void commandLine() {
 		while (true) {
 			System.out.print(">");
 			command = userInput.nextLine().split(" ");
-			//String junk = userInput.nextLine();
+			//String junk = userInput.next();
 			if (command[0].equals("addplayer")) {
 				comAddplayer();
 			} else if (command[0].equals("removeplayer")) {
@@ -122,6 +132,8 @@ public class IOInterface {
 				comResetstates();
 			} else if (command[0].equals("displayplayer")) {
 				comDisplayplayer();
+			} else if (command[0].equals("rankings")) {
+				comRankings();
 			}
 		}// end loop
 	}// end method

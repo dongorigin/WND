@@ -68,7 +68,7 @@ public class NimSys {
 		}
 	}
 	
-	public String[] displayPlayer(int index) {
+	public String[] getPlayerData(int index) {
 		PlayerData player = playerList.get(index);
 		return(player.getData());
 	}
