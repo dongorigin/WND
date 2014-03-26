@@ -18,6 +18,10 @@ public class Player {
 		this.familyName = familyName;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
 	public void play() {
 		playedNum++;
 	}

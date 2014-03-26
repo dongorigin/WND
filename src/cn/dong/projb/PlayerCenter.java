@@ -11,7 +11,7 @@ public class PlayerCenter {
 
 	private int indexOf(String userName) {
 		for (int i = 0; i < players.size(); i++) {
-			if (players.get(i).equals(userName)) {
+			if (players.get(i).getUserName().equals(userName)) {
 				return i;
 			}
 		}
