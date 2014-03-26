@@ -5,9 +5,18 @@ public class NimSysTestDrive {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		NimSys testGame = new NimSys();
+		IOInterface testDrive = new IOInterface();
 		
-		// test addPlayer()
+		testDrive.commandLine();
+		
+		
+		
+		
+		
+		
+		
+		
+		/*// test addPlayer()
 		System.out.println("addPlayer");
 		System.out.println(testGame.addPlayer("benjamin", "Zhang", "Chibin"));
 		testGame.showPlayer(0);
@@ -25,10 +34,10 @@ public class NimSysTestDrive {
 		System.out.println(testGame.removePlayer("nobody"));
 		System.out.println();
 		
-		/*// test removePlayer()
+		// test removePlayer()
 		System.out.println("removePlayer()");
 		System.out.println(testGame.removePlayer());
-		System.out.println();*/
+		System.out.println();
 		
 		// test editPlayer(S,S,S)
 		System.out.println("editPlayer");
@@ -53,7 +62,8 @@ public class NimSysTestDrive {
 		testGame.testNumber(0);
 		testGame.showPlayer(0);
 		testGame.resetStats();
-		testGame.showPlayer(0);
+		testGame.showPlayer(0);*/
+			
 		
 	}
 }

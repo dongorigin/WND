@@ -3,11 +3,10 @@ package au.edu.unimelb.benz;
 import java.util.*;
 
 public class NimSys {
-	private Scanner userInput;
+	
 	private ArrayList<PlayerData> playerList;
 
 	public NimSys() {
-		userInput = new Scanner(System.in);
 		playerList = new ArrayList<PlayerData>();
 	}
 
@@ -15,10 +14,15 @@ public class NimSys {
 	public void showPlayer(int index) {
 		PlayerData testPlayer = playerList.get(index);
 		String[] testData = testPlayer.getData();
-		System.out.println(index + " " + testData[0] + " " + testData[1] + " " + testData[2] + " " + testData[3] + " " + testData[4]);
+		System.out.print("index");
+		for (int i = 0; i < 5; i ++) {
+			System.out.print(" " + testData[i]);
+		}
+		System.out.println();
 	}
 	
 	public int checkPosition(String userN) {
+		System.out.println("checking now");
 		int position = 0;
 		for (PlayerData toCheck : playerList) {
 			if (toCheck.getUsername() == userN) {
@@ -29,34 +33,18 @@ public class NimSys {
 		return -1;
 	}
 	
-	public String addPlayer(String userN, String familyN, String givenN) {
-		String result = "fail";
-		int index = checkPosition(userN);
-		if (!(index == -1)) {
-			return result;
-		} else {
-			PlayerData newPlayer = new PlayerData(userN, familyN, givenN);
-			playerList.add(newPlayer);
-			result = "succeed";
-			return result;
-		}
+	public void addPlayer(String userN, String familyN, String givenN) {
+		System.out.println("adding player");
+		PlayerData newPlayer = new PlayerData(userN, familyN, givenN);
+		playerList.add(newPlayer);
 	}
 
-	public String removePlayer(String userN) {
-		int index = checkPosition(userN);
-		String result = "fail";
-		if (index == -1) {
-			return result;
-		} else {
+	public void removePlayer(int index) {
 			playerList.remove(index);
-			result = "succeed";
-			return result;
-		}
 	}
 
-	public int removePlayer() {
+	public void removePlayer() {
 		playerList.clear();
-		return playerList.size();
 	}
 
 	public String editPlayer(int index, String userN, String familyN, String givenN) {
@@ -114,39 +102,5 @@ public class NimSys {
 	public void exit() {
 		
 	}
-	
-	public void IO() {
-		System.out.println("Welcome to Nim");
-		System.out.println();
-		
-		while (true) {
-			
-		}
-	}
-	
 }// end class
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
