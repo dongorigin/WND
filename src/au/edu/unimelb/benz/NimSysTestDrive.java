@@ -8,11 +8,9 @@ public class NimSysTestDrive {
 		IOInterface testInterface = new IOInterface();
 		testInterface.commandLine();
 		
-		/*NimSys testSys = new NimSys();
-		testSys.addPlayer("bond", "bond", "bond");
-		int index = testSys.checkPosition("bond");
-		System.out.print(index);*/
-		
+		//NimSys testSys = new NimSys();
+		//testSys.addPlayer("bond", "bond", "bond");
+		//testSys.checkPosition("bond");
 		
 		
 		

@@ -14,7 +14,7 @@ public class NimSys {
 	public void showPlayer(int index) {
 		PlayerData testPlayer = playerList.get(index);
 		String[] testData = testPlayer.getData();
-		System.out.print("index");
+		System.out.print(index);
 		for (int i = 0; i < 5; i ++) {
 			System.out.print(" " + testData[i]);
 		}
@@ -22,12 +22,9 @@ public class NimSys {
 	}
 	
 	public int checkPosition(String userN) {
-		// test
-		//System.out.println("checking now");
-		
 		int position = 0;
 		for (PlayerData toCheck : playerList) {
-			if (toCheck.getUsername() == userN) {
+			if (toCheck.getUsername().equals(userN)) {
 				return position;
 			}
 			position ++;
@@ -36,8 +33,6 @@ public class NimSys {
 	}
 	
 	public void addPlayer(String userN, String familyN, String givenN) {
-		// test
-		//System.out.println("adding player");
 		PlayerData newPlayer = new PlayerData(userN, familyN, givenN);
 		playerList.add(newPlayer);
 	}
@@ -50,28 +45,14 @@ public class NimSys {
 		playerList.clear();
 	}
 
-	public String editPlayer(int index, String userN, String familyN, String givenN) {
-		String result = "fail";
-		if (index == -1) {
-			return result;
-		} else {
-			PlayerData editor = playerList.get(index);
-			editor.setNames(userN, familyN, givenN);
-			return result;
-		}
+	public void editPlayer(int index, String userN, String familyN, String givenN) {
+		PlayerData editor = playerList.get(index);
+		editor.setNames(userN, familyN, givenN);
 	}
 	
-	public String resetStats(String userN) {
-		int index = checkPosition(userN);
-		String result = "fail";
-		if (index == -1) {
-			return result;
-		} else {
-			PlayerData editor = playerList.get(index);
-			editor.resetNumbers();
-			result = "succeed";
-			return result;
-		}
+	public void resetStats(int index) {
+		PlayerData editor = playerList.get(index);
+		editor.resetNumbers();
 	}
 	
 	// test method
@@ -87,19 +68,13 @@ public class NimSys {
 		}
 	}
 	
-	public String[] displayPlayer(String userN) {
-		int index = checkPosition(userN);
-		if (index == -1) {
-			return null;
-		} else {
-			PlayerData player = playerList.get(index);
-			return(player.getData());
-		}
-	}
-	
 	public String[] displayPlayer(int index) {
 		PlayerData player = playerList.get(index);
 		return(player.getData());
+	}
+	
+	public int size() {
+		return playerList.size();
 	}
 	
 	public void exit() {
