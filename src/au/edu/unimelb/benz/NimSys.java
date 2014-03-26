@@ -22,7 +22,9 @@ public class NimSys {
 	}
 	
 	public int checkPosition(String userN) {
-		System.out.println("checking now");
+		// test
+		//System.out.println("checking now");
+		
 		int position = 0;
 		for (PlayerData toCheck : playerList) {
 			if (toCheck.getUsername() == userN) {
@@ -34,7 +36,8 @@ public class NimSys {
 	}
 	
 	public void addPlayer(String userN, String familyN, String givenN) {
-		System.out.println("adding player");
+		// test
+		//System.out.println("adding player");
 		PlayerData newPlayer = new PlayerData(userN, familyN, givenN);
 		playerList.add(newPlayer);
 	}

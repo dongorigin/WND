@@ -5,12 +5,13 @@ public class NimSysTestDrive {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		IOInterface testDrive = new IOInterface();
+		IOInterface testInterface = new IOInterface();
+		testInterface.commandLine();
 		
-		testDrive.commandLine();
-		
-		
-		
+		/*NimSys testSys = new NimSys();
+		testSys.addPlayer("bond", "bond", "bond");
+		int index = testSys.checkPosition("bond");
+		System.out.print(index);*/
 		
 		
 		
