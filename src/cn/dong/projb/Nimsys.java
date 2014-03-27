@@ -52,7 +52,7 @@ public class Nimsys {
 		} else if (command.equals("startgame")) {
 			startGame(action);
 		} else if (command.equals("exit")) {
-			System.exit(0);
+			exit();
 		} else {
 			System.out.println("command not found");
 		}
@@ -133,6 +133,10 @@ public class Nimsys {
 				System.out.println("One of the players does not exist.");
 			}
 		}
+	}
+
+	private void exit() {
+		System.exit(0);
 	}
 
 	public static void main(String[] args) {
