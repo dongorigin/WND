@@ -11,15 +11,15 @@ public class NimSys {
 	}
 
 	// test method
-	public void showPlayer(int index) {
-		PlayerData testPlayer = playerList.get(index);
-		String[] testData = testPlayer.getData();
+	/*public void showPlayer(int index) {
+		String[] testData = playerList.get(index).getData();
 		System.out.print(index);
-		for (int i = 0; i < 5; i ++) {
-			System.out.print(" " + testData[i]);
+		for (String toDisplay : testData) {
+			System.out.print(" " + toDisplay);
 		}
 		System.out.println();
 	}
+	*/
 	
 	public int checkPosition(String userN) {
 		int position = 0;
@@ -46,20 +46,19 @@ public class NimSys {
 	}
 
 	public void editPlayer(int index, String userN, String familyN, String givenN) {
-		PlayerData editor = playerList.get(index);
-		editor.setNames(userN, familyN, givenN);
+		playerList.get(index).setNames(userN, familyN, givenN);
 	}
 	
 	public void resetStats(int index) {
-		PlayerData editor = playerList.get(index);
-		editor.resetNumbers();
+		playerList.get(index).resetNumbers();
 	}
 	
-	// test method
-	public void testNumber(int index) {
-		PlayerData editor = playerList.get(index);
-		editor.finish("won");
-		editor.finish("lost");
+	public void playerWin(int index) {
+		playerList.get(index).win();
+	}
+	
+	public void playerLose(int index) {
+		playerList.get(index).lose();
 	}
 	
 	public void resetStats() {
@@ -69,12 +68,20 @@ public class NimSys {
 	}
 	
 	public String[] getPlayerData(int index) {
-		PlayerData player = playerList.get(index);
-		return(player.getData());
+		return playerList.get(index).getData();
 	}
 	
-	public int size() {
+	public int getSize() {
 		return playerList.size();
+	}
+	
+	public void rank() {
+		Collections.sort(playerList);
+	}
+	
+	public String getRate(int index) {
+		String rate = playerList.get(index).getRate() + "%";
+		return rate;
 	}
 	
 	public void exit() {

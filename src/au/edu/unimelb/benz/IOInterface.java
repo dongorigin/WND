@@ -20,12 +20,13 @@ public class IOInterface {
 	}
 	
 	// test method
-	public void displayCommand() {
+	/*private void displayCommand() {
 		System.out.println("command: " + command[0]);
 		System.out.println("parameters: " + command[1]);
 	}
+	*/
 	
-	public void showPlayer(String[] playerData) {
+	private void showPlayer(String[] playerData) {
 		for (int i = 0; i < 3; i ++) {
 			System.out.print(playerData[i] + ",");
 		}
@@ -34,7 +35,7 @@ public class IOInterface {
 		System.out.println();
 	}
 	
-	public void comAddplayer() {
+	private void comAddplayer() {
 		names = command[1].split(",");
 		index = nimSystem.checkPosition(names[0]);
 		if (index == -1) {
@@ -45,7 +46,7 @@ public class IOInterface {
 		System.out.println();
 	}
 	
-	public void comRemoveplayer() {
+	private void comRemoveplayer() {
 		if (command.length == 2) {
 			names[0] = command[1];
 			index = nimSystem.checkPosition(names[0]);
@@ -63,7 +64,7 @@ public class IOInterface {
 		System.out.println();
 	}
 	
-	public void comEditplayer() {
+	private void comEditplayer() {
 		names = command[1].split(",");
 		index = nimSystem.checkPosition(names[0]);
 		if (index != -1) {
@@ -74,7 +75,7 @@ public class IOInterface {
 		System.out.println();
 	}
 	
-	public void comResetstates() {
+	private void comResetstates() {
 		if (command.length == 2) {
 			names[0] = command[1];
 			index = nimSystem.checkPosition(names[0]);
@@ -92,7 +93,7 @@ public class IOInterface {
 		System.out.println();
 	}
 	
-	public void comDisplayplayer() {
+	private void comDisplayplayer() {
 		if (command.length == 2) {
 			String username = command[1];
 			index = nimSystem.checkPosition(username);
@@ -102,7 +103,7 @@ public class IOInterface {
 				System.out.println("The player does not exist.");
 			}
 		} else {
-			for (int i = 0; i < nimSystem.size(); i ++) {
+			for (int i = 0; i < nimSystem.getSize(); i ++) {
 				showPlayer(nimSystem.getPlayerData(i));
 			}
 		}
@@ -110,11 +111,30 @@ public class IOInterface {
 	}
 	
 	private void comRankings() {
-		String[] playerData = new String[5];
-		int rate = 0;
-		for (int i = 0; i < nimSystem.size(); i ++) {
-			playerData = nimSystem.getPlayerData(i);
+		nimSystem.rank();
+		String[] rankData = new String[5];
+		int size = nimSystem.getSize();
+		int playedNum = 0;
+		String rate = null;
+		for (int i = 1; i <= Math.min(10, size); i ++) {
+			rankData = nimSystem.getPlayerData((size - i));
+			rate = nimSystem.getRate((size - i));
+			playedNum = Integer.parseInt(rankData[4]);
+			if (playedNum < 10) {
+				rankData[4] = "0" + rankData[4];
+			}
+			System.out.printf("%-5s| %-3sgames | %s %s%n", rate, rankData[4], rankData[2], rankData[1]);
 		}
+		System.out.println();
+	}
+	
+	private void comStartgame() {
+		
+	}
+	
+	private void comExit() {
+		System.out.println();
+		System.exit(0);
 	}
 	
 	public void commandLine() {
@@ -134,6 +154,10 @@ public class IOInterface {
 				comDisplayplayer();
 			} else if (command[0].equals("rankings")) {
 				comRankings();
+			} else if (command[0].equals("startgame")) {
+				comStartgame();
+			} else if (command[0].equals("exit")) {
+				comExit();
 			}
 		}// end loop
 	}// end method

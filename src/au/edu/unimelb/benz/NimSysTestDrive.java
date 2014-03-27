@@ -5,12 +5,27 @@ public class NimSysTestDrive {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		IOInterface testInterface = new IOInterface();
-		testInterface.commandLine();
 		
-		//NimSys testSys = new NimSys();
-		//testSys.addPlayer("bond", "bond", "bond");
+		//System.out.println("15/21 = " + 15.0 / 21.0);
+		//System.out.println("15%21 = " + 15.0 % 21.0);
+		
+		
+		NimSys testSys = new NimSys();
+		testSys.addPlayer("bond", "bond", "bond");
+		testSys.addPlayer("ben", "ben", "ben");
+		// bond 
+		testSys.playerWin(0);
+		//testSys.playerLose(0);
+		//testSys.playerLose(0);
+		
+		// ben
+		testSys.playerLose(1);
+		//testSys.playerWin(1);
+		//testSys.playerWin(1);
 		//testSys.checkPosition("bond");
+		//testSys.showPlayer(0);
+		//testSys.showPlayer(1);
+		
 		
 		
 		

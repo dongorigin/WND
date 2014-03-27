@@ -1,11 +1,12 @@
 package au.edu.unimelb.benz;
 
-public class PlayerData {
+public class PlayerData implements Comparable<PlayerData>{
 	private String username;
 	private String familyName;
 	private String givenName;
 	private int playedNum;
 	private int wonNum;
+	private Integer rate;
 	
 	public PlayerData() {
 		username = "nimUser";
@@ -13,6 +14,11 @@ public class PlayerData {
 		givenName = "John";
 		playedNum = 0;
 		wonNum = 0;
+		rate = 0;
+	}
+	
+	public int compareTo(PlayerData r) {
+		return rate.compareTo(r.getRate());
 	}
 	
 	public PlayerData(String userN, String familyN, String givenN) {
@@ -38,19 +44,32 @@ public class PlayerData {
 		return player;
 	}
 	
-	public void finish(String result) {
+	public void win() {
 		playedNum ++;
-		if (result == "won") {
-			wonNum ++;
-		}
+		wonNum ++;
+		doRate();
+	}
+	
+	public void lose() {
+		playedNum ++;
+		doRate();
 	}
 	
 	public void resetNumbers() {
 		playedNum = 0;
 		wonNum = 0;
+		doRate();
 	}
 	
 	public String getUsername() {
 		return username;
+	}
+	
+	public Integer getRate() {
+		return rate;
+	}
+	
+	public void doRate() {
+		rate = (int) ((float) wonNum / (float) playedNum * 100.0);
 	}
 }
