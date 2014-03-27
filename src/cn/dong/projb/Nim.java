@@ -32,7 +32,8 @@ public class Nim {
 				} else {
 					stonesNum -= num;
 					if (stonesNum == 0) {
-						System.out.printf("%s %s wins!\n",
+						System.out.println("\nGame Over");
+						System.out.printf("%s %s wins!\n\n",
 								players[(turnNum + 1) % 2].getFamilyName(),
 								players[(turnNum + 1) % 2].getGivenName());
 						players[(turnNum + 1) % 2].played(true);
