@@ -3,7 +3,10 @@ package cn.dong.projb;
 import java.util.ArrayList;
 
 public class PlayerCenter {
-	ArrayList<Player> players;
+	private static final String PLAYER_EXISTS = "The player already exists.";
+	private static final String PLAYER_NOT_EXIST = "The player does not exist.";
+
+	private ArrayList<Player> players;
 
 	public PlayerCenter() {
 		players = new ArrayList<Player>();
@@ -33,6 +36,7 @@ public class PlayerCenter {
 			players.add(player);
 			return true;
 		} else {
+			System.out.println(PLAYER_EXISTS);
 			return false;
 		}
 	}
@@ -49,6 +53,7 @@ public class PlayerCenter {
 			players.remove(index);
 			return true;
 		} else {
+			System.out.println(PLAYER_NOT_EXIST);
 			return false;
 		}
 	}
@@ -74,6 +79,7 @@ public class PlayerCenter {
 			players.get(index).setName(userName, givenName, familyName);
 			return true;
 		} else {
+			System.out.println(PLAYER_NOT_EXIST);
 			return false;
 		}
 	}
@@ -90,6 +96,7 @@ public class PlayerCenter {
 			players.get(index).resetStats();
 			return true;
 		} else {
+			System.out.println(PLAYER_NOT_EXIST);
 			return false;
 		}
 	}
@@ -107,7 +114,7 @@ public class PlayerCenter {
 	 * 展示Player
 	 * 
 	 * @param userName
-	 * @return true 展示成功, false 用户不存在, 提示错误
+	 * @return true 展示成功, false 用户不存在
 	 */
 	public boolean displayPlayer(String userName) {
 		int index = indexOf(userName);
@@ -115,7 +122,7 @@ public class PlayerCenter {
 			players.get(index).display();
 			return true;
 		} else {
-			System.out.println("The player does not exist.");
+			System.out.println(PLAYER_NOT_EXIST);
 			return false;
 		}
 	}
@@ -131,5 +138,20 @@ public class PlayerCenter {
 
 	public void rankings() {
 
+	}
+
+	/**
+	 * 根据用户名获取Player
+	 * 
+	 * @param userName
+	 * @return 用户名所对应的Player，不存在则返回null
+	 */
+	public Player getPlayer(String userName) {
+		int index = indexOf(userName);
+		if (index >= 0) {
+			return players.get(index);
+		} else {
+			return null;
+		}
 	}
 }
