@@ -7,7 +7,7 @@ public class Player implements Comparable<Player> {
 	private String familyName;
 	private int playedNum;
 	private int wonNum;
-	private double winRate;
+	private double rate;
 
 	public Player(String userName, String givenName, String familyName) {
 		setName(userName, givenName, familyName);
@@ -23,12 +23,20 @@ public class Player implements Comparable<Player> {
 		return userName;
 	}
 
+	public String getGivenName() {
+		return givenName;
+	}
+
+	public String getFamilyName() {
+		return familyName;
+	}
+
 	public void played(boolean isWin) {
 		playedNum++;
 		if (isWin) {
 			wonNum++;
 		}
-		winRate = wonNum / playedNum;
+		rate = ((double) wonNum) / playedNum;
 	}
 
 	public void resetStats() {
@@ -42,13 +50,7 @@ public class Player implements Comparable<Player> {
 
 	@Override
 	public int compareTo(Player player) {
-		if (this.winRate > player.winRate) {
-			return 1;
-		} else if (this.winRate < player.winRate) {
-			return -1;
-		} else {
-			return 0;
-		}
+		return new Double(rate).compareTo(player.rate);
 	}
 
 }
