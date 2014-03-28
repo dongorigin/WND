@@ -1,4 +1,4 @@
-package cn.benz;
+package au.edu.unimel.benz.projA;
 /* Nim.java
  * This is a Nim game all in one class
  * Designed and written by Benz

@@ -1,6 +1,7 @@
-package au.edu.unimelb.benz;
+package au.edu.unimelb.benz.projB;
 
 public class PlayerData implements Comparable<PlayerData>{
+	
 	private String username;
 	private String familyName;
 	private String givenName;
@@ -18,7 +19,14 @@ public class PlayerData implements Comparable<PlayerData>{
 	}
 	
 	public int compareTo(PlayerData r) {
-		return rate.compareTo(r.getRate());
+		int firstResult = rate.compareTo(r.getRate());
+		int finalResult = 0;
+		if (firstResult == 0) {
+			finalResult = username.compareTo(r.getUsername());
+		} else {
+			finalResult = -firstResult;
+		}
+		return finalResult;
 	}
 	
 	public PlayerData(String userN, String familyN, String givenN) {
@@ -44,14 +52,9 @@ public class PlayerData implements Comparable<PlayerData>{
 		return player;
 	}
 	
-	public void win() {
-		playedNum ++;
-		wonNum ++;
-		doRate();
-	}
-	
-	public void lose() {
-		playedNum ++;
+	public void editNumbers(int playedN, int wonN) {
+		playedNum += playedN;
+		wonNum += wonN;
 		doRate();
 	}
 	
@@ -70,6 +73,6 @@ public class PlayerData implements Comparable<PlayerData>{
 	}
 	
 	public void doRate() {
-		rate = (int) ((float) wonNum / (float) playedNum * 100.0);
+		rate = (int) Math.round((float) wonNum / (float) playedNum * 100.0);
 	}
 }

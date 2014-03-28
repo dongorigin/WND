@@ -10,4 +10,5 @@ how good my life would get
 from the moment I met you
 Bernadette
 
-benz: 0:52 28.3.2014 终于写完了命令行！自己测试以后没发现bug。两个地方撞大运，第一：sort()对.clone出来的ArrayList没有效果。第二，对generic还不是很熟，属于撞大运。
+benz: 00:52 28.3.2014 终于写完了命令行！自己测试以后没发现bug。两个地方撞大运，第一：sort()对.clone出来的ArrayList没有效果。第二，对generic还不是很熟，属于撞大运。
+benz: 19:25 28.3.2014 终于搞定了。。目前就这样吧，感觉还可以。

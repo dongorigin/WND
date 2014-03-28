@@ -1,20 +1,24 @@
-package au.edu.unimelb.benz;
+package au.edu.unimelb.benz.projB;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class IOInterface {
-	private Scanner userInput;
+	
+	public static Scanner userInput;
 	private NimSys nimSystem;
 	private String[] command;
 	private String[] names;
 	int index;
+	
+	static {
+		userInput = new Scanner(System.in);
+	}
 	
 	public IOInterface() {
 		System.out.println("Welcome to Nim");
 		System.out.println();
 		command = new String[2];
 		names = new String[3];
-		userInput = new Scanner(System.in);
 		nimSystem = new NimSys();
 		index = 0;
 	}
@@ -22,7 +26,7 @@ public class IOInterface {
 	// test method
 	/*private void displayCommand() {
 		System.out.println("command: " + command[0]);
-		System.out.println("parameters: " + command[1]);
+		System.out.println("names: " + command[1]);
 	}
 	*/
 	
@@ -111,14 +115,15 @@ public class IOInterface {
 	}
 	
 	private void comRankings() {
-		nimSystem.rank();
+		int[] rankingIndex = nimSystem.rank();
 		String[] rankData = new String[5];
-		int size = nimSystem.getSize();
+		int index = 0;
 		int playedNum = 0;
 		String rate = null;
-		for (int i = 1; i <= Math.min(10, size); i ++) {
-			rankData = nimSystem.getPlayerData((size - i));
-			rate = nimSystem.getRate((size - i));
+		for (int i = 0; i < Math.min(10, rankingIndex.length); i ++) {
+			index = rankingIndex[i];
+			rankData = nimSystem.getPlayerData(index);
+			rate = nimSystem.getRate(index);
 			playedNum = Integer.parseInt(rankData[4]);
 			if (playedNum < 10) {
 				rankData[4] = "0" + rankData[4];
@@ -128,11 +133,35 @@ public class IOInterface {
 		System.out.println();
 	}
 	
+	
 	private void comStartgame() {
-		
+		String[] parameters = new String[4];
+		int playerOneIndex = 0;
+		int playerTwoIndex = 0;
+		parameters = command[1].split(",");
+		playerOneIndex = nimSystem.checkPosition(parameters[2]);
+		playerTwoIndex = nimSystem.checkPosition(parameters[3]);
+		if ((playerOneIndex != -1) && (playerTwoIndex != -1)) {
+			String result = null;
+			int initialStones = Integer.parseInt(parameters[0]);
+			int upperBound = Integer.parseInt(parameters[1]);
+			NimGame game = new NimGame(initialStones, upperBound, nimSystem.getPlayerData(playerOneIndex), nimSystem.getPlayerData(playerTwoIndex));
+			result = game.gameLauncher();
+			if (result.equals("first player wins")) {
+				nimSystem.playerWin(playerOneIndex);
+				nimSystem.playerLose(playerTwoIndex);
+			} else if (result.equals("second player wins")) {
+				nimSystem.playerLose(playerOneIndex);
+				nimSystem.playerWin(playerTwoIndex);
+			}
+		} else {
+			System.out.println("One of the players does not exist.");
+		}
+		System.out.println();
 	}
 	
 	private void comExit() {
+		userInput.close();
 		System.out.println();
 		System.exit(0);
 	}
@@ -158,6 +187,8 @@ public class IOInterface {
 				comStartgame();
 			} else if (command[0].equals("exit")) {
 				comExit();
+			} else {
+				System.out.println();
 			}
 		}// end loop
 	}// end method

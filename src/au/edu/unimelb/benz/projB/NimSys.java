@@ -1,4 +1,4 @@
-package au.edu.unimelb.benz;
+package au.edu.unimelb.benz.projB;
 
 import java.util.*;
 
@@ -54,11 +54,11 @@ public class NimSys {
 	}
 	
 	public void playerWin(int index) {
-		playerList.get(index).win();
+		playerList.get(index).editNumbers(1, 1);
 	}
 	
 	public void playerLose(int index) {
-		playerList.get(index).lose();
+		playerList.get(index).editNumbers(1, 0);
 	}
 	
 	public void resetStats() {
@@ -75,8 +75,17 @@ public class NimSys {
 		return playerList.size();
 	}
 	
-	public void rank() {
-		Collections.sort(playerList);
+	public int[] rank() {
+		@SuppressWarnings("unchecked")
+		ArrayList<PlayerData> toMerge = (ArrayList<PlayerData>)playerList.clone();
+		Collections.sort(toMerge);
+		int size = Math.min(10, toMerge.size());
+		int[] rankingIndex = new int[size];
+		for (int i = 0; i < size; i ++) {
+			rankingIndex[i] = playerList.indexOf(toMerge.get(i));
+		}
+		
+		return rankingIndex;
 	}
 	
 	public String getRate(int index) {
@@ -84,8 +93,5 @@ public class NimSys {
 		return rate;
 	}
 	
-	public void exit() {
-		
-	}
 }// end class
 

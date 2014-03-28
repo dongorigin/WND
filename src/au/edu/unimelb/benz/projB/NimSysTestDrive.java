@@ -1,4 +1,4 @@
-package au.edu.unimelb.benz;
+package au.edu.unimelb.benz.projB;
 
 public class NimSysTestDrive {
 
@@ -11,15 +11,21 @@ public class NimSysTestDrive {
 		
 		
 		NimSys testSys = new NimSys();
-		testSys.addPlayer("bond", "bond", "bond");
-		testSys.addPlayer("ben", "ben", "ben");
+		testSys.addPlayer("d", "d", "d");
+		testSys.addPlayer("c", "c", "c");
+		testSys.addPlayer("b", "b", "b");
+		testSys.addPlayer("a", "a", "a");
+		
+		for (int toDisplay : testSys.rank()) {
+			System.out.println(toDisplay + " ");
+		}
 		// bond 
-		testSys.playerWin(0);
+		//testSys.playerWin(0);
 		//testSys.playerLose(0);
 		//testSys.playerLose(0);
 		
 		// ben
-		testSys.playerLose(1);
+		//testSys.playerLose(1);
 		//testSys.playerWin(1);
 		//testSys.playerWin(1);
 		//testSys.checkPosition("bond");

@@ -1,4 +1,4 @@
-package au.edu.unimelb.benz;
+package au.edu.unimelb.benz.projB;
 
 public class IOTestDrive {
 
