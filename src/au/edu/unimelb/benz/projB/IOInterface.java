@@ -107,8 +107,9 @@ public class IOInterface {
 				System.out.println("The player does not exist.");
 			}
 		} else {
-			for (int i = 0; i < nimSystem.getSize(); i ++) {
-				showPlayer(nimSystem.getPlayerData(i));
+			int[] displayIndex = nimSystem.displayAll();
+			for (int i = 0; i < displayIndex.length; i ++) {
+				showPlayer(nimSystem.getPlayerData(displayIndex[i]));
 			}
 		}
 		System.out.println();

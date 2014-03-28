@@ -93,5 +93,29 @@ public class NimSys {
 		return rate;
 	}
 	
+	class UsernameCompare implements Comparator<PlayerData> {
+		public int compare(PlayerData one, PlayerData two) {
+			return one.getUsername().compareTo(two.getUsername());
+		}
+	}
+	
+	public int[] displayAll() {
+		@SuppressWarnings("unchecked")
+		ArrayList<PlayerData> toMerge = (ArrayList<PlayerData>)playerList.clone();
+		UsernameCompare usernameCompare = new UsernameCompare();
+		Collections.sort(toMerge, usernameCompare);
+		int size = toMerge.size();
+		int[] displayIndex = new int[size];
+		for (int i = 0; i < size; i ++) {
+			displayIndex[i] = playerList.indexOf(toMerge.get(i));
+		}
+		
+		return displayIndex;
+	}
+	
+	
+	
+	
+	
 }// end class
 
