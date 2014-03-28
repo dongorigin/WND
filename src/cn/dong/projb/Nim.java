@@ -34,8 +34,8 @@ public class Nim {
 					if (stonesNum == 0) {
 						System.out.println("\nGame Over");
 						System.out.printf("%s %s wins!\n\n",
-								players[(turnNum + 1) % 2].getFamilyName(),
-								players[(turnNum + 1) % 2].getGivenName());
+								players[(turnNum + 1) % 2].getGivenName(),
+								players[(turnNum + 1) % 2].getFamilyName());
 						players[(turnNum + 1) % 2].played(true);
 						players[turnNum % 2].played(false);
 						break;
@@ -51,10 +51,10 @@ public class Nim {
 	private void welcome() {
 		System.out.println("Initial stone count: " + stonesNum);
 		System.out.println("Maxinum stone removal: " + upperBound);
-		System.out.printf("Player 1: %s %s\n", players[0].getFamilyName(),
-				players[0].getGivenName());
-		System.out.printf("Player 2: %s %s\n", players[1].getFamilyName(),
-				players[1].getGivenName());
+		System.out.printf("Player 1: %s %s\n", players[0].getGivenName(),
+				players[0].getFamilyName());
+		System.out.printf("Player 2: %s %s\n", players[1].getGivenName(),
+				players[1].getFamilyName());
 	}
 
 	private void display(int turnNum) {
@@ -64,6 +64,14 @@ public class Nim {
 		}
 		System.out.println();
 		System.out.printf("%d stones left:%s\n", stonesNum, sb.toString());
-		System.out.printf("%s's turn - remove how many?\n", players[turnNum % 2].getFamilyName());
+		System.out.printf("%s's turn - remove how many?\n", players[turnNum % 2].getGivenName());
+	}
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		Player playerA = new Player("a", "a", "a");
+		Player playerB = new Player("b", "b", "b");
+		Nim nim = new Nim(scanner, 10, 3, playerA, playerB);
+		nim.startGame();
 	}
 }

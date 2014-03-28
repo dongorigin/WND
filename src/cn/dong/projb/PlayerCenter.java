@@ -1,6 +1,8 @@
 package cn.dong.projb;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class PlayerCenter {
 	private static final String PLAYER_EXISTS = "The player already exists.";
@@ -137,7 +139,12 @@ public class PlayerCenter {
 	}
 
 	public void rankings() {
-
+		Collections.sort(players);
+		for (int i = 0; i < Math.min(players.size(), 10); i++) {
+			Player player = players.get(i);
+			System.out.printf("%d%% | %2d games | %s %s\n", player.getRate(),
+					player.getPlayedNum(), player.getGivenName(), player.getFamilyName());
+		}
 	}
 
 	/**
