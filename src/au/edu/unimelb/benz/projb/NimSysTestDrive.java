@@ -1,4 +1,4 @@
-package au.edu.unimelb.benz.projB;
+package au.edu.unimelb.benz.projb;
 
 public class NimSysTestDrive {
 

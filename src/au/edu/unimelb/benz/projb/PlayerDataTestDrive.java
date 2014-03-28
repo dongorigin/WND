@@ -1,4 +1,4 @@
-package au.edu.unimelb.benz.projB;
+package au.edu.unimelb.benz.projb;
 
 import static java.lang.System.out;
 
