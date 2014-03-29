@@ -36,7 +36,7 @@ public class NimGame {
 	public String gameLauncher() {
 		System.out.println();
 		System.out.println("Initial stone count: " + initialStones);
-		System.out.println("Maximum stone removal" + upperBound);
+		System.out.println("Maximum stone removal: " + upperBound);
 		System.out.println("Player 1: " + playerOneData[2] + " " + playerOneData[1]);
 		System.out.println("Player 2: " + playerTwoData[2] + " " + playerTwoData[1]);
 		
