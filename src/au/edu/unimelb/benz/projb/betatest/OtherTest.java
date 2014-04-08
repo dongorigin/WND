@@ -1,4 +1,4 @@
-package au.edu.unimelb.benz.projb;
+package au.edu.unimelb.benz.projb.betatest;
 
 import java.util.ArrayList;
 import java.util.Collections;

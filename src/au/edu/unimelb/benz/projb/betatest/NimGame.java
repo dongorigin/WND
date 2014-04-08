@@ -1,4 +1,4 @@
-package au.edu.unimelb.benz.projb;
+package au.edu.unimelb.benz.projb.betatest;
 
 public class NimGame {
 	
@@ -59,6 +59,7 @@ public class NimGame {
 			leftStones -= remove;
 			return true;
 		} else {
+			System.out.println();
 			System.out.println("Invalid move. You must remove between 1 and " + maxRemove + " stones.");
 			return false;
 		}

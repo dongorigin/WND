@@ -1,6 +1,6 @@
-package au.edu.unimelb.benz.projb;
+package au.edu.unimelb.benz.projb.betatest;
 
-public class NimSysTestDrive {
+public class PlayerCenterTestDrive {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -10,7 +10,7 @@ public class NimSysTestDrive {
 		//System.out.println("15%21 = " + 15.0 % 21.0);
 		
 		
-		NimSys testSys = new NimSys();
+		PlayerCenter testSys = new PlayerCenter();
 		testSys.addPlayer("d", "d", "d");
 		testSys.addPlayer("c", "c", "c");
 		testSys.addPlayer("b", "b", "b");

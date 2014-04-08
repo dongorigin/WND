@@ -1,11 +1,11 @@
-package au.edu.unimelb.benz.projb;
+package au.edu.unimelb.benz.projb.betatest;
 
 import java.util.*;
 
 public class IOInterface {
 	
 	public static Scanner userInput;
-	private NimSys nimSystem;
+	private PlayerCenter playerCenter;
 	private String[] command;
 	private String[] names;
 	int index;
@@ -19,7 +19,7 @@ public class IOInterface {
 		System.out.println();
 		command = new String[2];
 		names = new String[3];
-		nimSystem = new NimSys();
+		playerCenter = new PlayerCenter();
 		index = 0;
 	}
 	
@@ -31,9 +31,9 @@ public class IOInterface {
 	*/
 	
 	private void showPlayer(String[] playerData) {
-		for (int i = 0; i < 3; i ++) {
-			System.out.print(playerData[i] + ",");
-		}
+		System.out.print(playerData[0] + ",");
+		System.out.print(playerData[2] + ",");
+		System.out.print(playerData[1] + ",");
 		System.out.print(playerData[3] + " games,");
 		System.out.print(playerData[4] + " wins");
 		System.out.println();
@@ -41,9 +41,9 @@ public class IOInterface {
 	
 	private void comAddplayer() {
 		names = command[1].split(",");
-		index = nimSystem.checkPosition(names[0]);
+		index = playerCenter.checkPosition(names[0]);
 		if (index == -1) {
-			nimSystem.addPlayer(names[0], names[1], names[2]);
+			playerCenter.addPlayer(names[0], names[1], names[2]);
 		} else {
 			System.out.println("The player already exists.");
 		}
@@ -53,16 +53,16 @@ public class IOInterface {
 	private void comRemoveplayer() {
 		if (command.length == 2) {
 			names[0] = command[1];
-			index = nimSystem.checkPosition(names[0]);
+			index = playerCenter.checkPosition(names[0]);
 			if (index != -1) {
-				nimSystem.removePlayer(index);
+				playerCenter.removePlayer(index);
 			} else {
 				System.out.println("The player does not exist.");
 			}
 		} else {
 			System.out.println("Are you sure you want to remove all players? (y/n)");
 			if (userInput.nextLine().equals("y")) {
-				nimSystem.removePlayer();
+				playerCenter.removePlayer();
 			}
 		}
 		System.out.println();
@@ -70,28 +70,28 @@ public class IOInterface {
 	
 	private void comEditplayer() {
 		names = command[1].split(",");
-		index = nimSystem.checkPosition(names[0]);
+		index = playerCenter.checkPosition(names[0]);
 		if (index != -1) {
-			nimSystem.editPlayer(index, names[0], names[1], names[2]);
+			playerCenter.editPlayer(index, names[0], names[1], names[2]);
 		} else {
-			System.out.println("The player does not exists.");
+			System.out.println("The player does not exist.");
 		}
 		System.out.println();
 	}
 	
-	private void comResetstates() {
+	private void comResetstats() {
 		if (command.length == 2) {
 			names[0] = command[1];
-			index = nimSystem.checkPosition(names[0]);
+			index = playerCenter.checkPosition(names[0]);
 			if (index != -1) {
-				nimSystem.resetStats(index);
+				playerCenter.resetStats(index);
 			} else {
 				System.out.println("The player does not exist.");
 			}
 		} else {
 			System.out.println("Are you sure you want to reset all player statistics? (y/n)");
 			if (userInput.nextLine().equals("y")) {
-				nimSystem.resetStats();
+				playerCenter.resetStats();
 			}
 		}
 		System.out.println();
@@ -100,36 +100,36 @@ public class IOInterface {
 	private void comDisplayplayer() {
 		if (command.length == 2) {
 			String username = command[1];
-			index = nimSystem.checkPosition(username);
+			index = playerCenter.checkPosition(username);
 			if (index != -1) {
-				showPlayer(nimSystem.getPlayerData(index));
+				showPlayer(playerCenter.getPlayerData(index));
 			}else {
 				System.out.println("The player does not exist.");
 			}
 		} else {
-			int[] displayIndex = nimSystem.displayAll();
+			int[] displayIndex = playerCenter.displayAll();
 			for (int i = 0; i < displayIndex.length; i ++) {
-				showPlayer(nimSystem.getPlayerData(displayIndex[i]));
+				showPlayer(playerCenter.getPlayerData(displayIndex[i]));
 			}
 		}
 		System.out.println();
 	}
 	
 	private void comRankings() {
-		int[] rankingIndex = nimSystem.rank();
+		int[] rankingIndex = playerCenter.rank();
 		String[] rankData = new String[5];
 		int index = 0;
 		int playedNum = 0;
 		String rate = null;
 		for (int i = 0; i < Math.min(10, rankingIndex.length); i ++) {
 			index = rankingIndex[i];
-			rankData = nimSystem.getPlayerData(index);
-			rate = nimSystem.getRate(index);
+			rankData = playerCenter.getPlayerData(index);
+			rate = playerCenter.getRate(index);
 			playedNum = Integer.parseInt(rankData[4]);
 			if (playedNum < 10) {
-				rankData[4] = "0" + rankData[4];
+				rankData[3] = "0" + rankData[3];
 			}
-			System.out.printf("%-5s| %-3sgames | %s %s%n", rate, rankData[4], rankData[2], rankData[1]);
+			System.out.printf("%-5s| %-3sgames | %s %s%n", rate, rankData[3], rankData[2], rankData[1]);
 		}
 		System.out.println();
 	}
@@ -140,20 +140,20 @@ public class IOInterface {
 		int playerOneIndex = 0;
 		int playerTwoIndex = 0;
 		parameters = command[1].split(",");
-		playerOneIndex = nimSystem.checkPosition(parameters[2]);
-		playerTwoIndex = nimSystem.checkPosition(parameters[3]);
+		playerOneIndex = playerCenter.checkPosition(parameters[2]);
+		playerTwoIndex = playerCenter.checkPosition(parameters[3]);
 		if ((playerOneIndex != -1) && (playerTwoIndex != -1)) {
 			String result = null;
 			int initialStones = Integer.parseInt(parameters[0]);
 			int upperBound = Integer.parseInt(parameters[1]);
-			NimGame game = new NimGame(initialStones, upperBound, nimSystem.getPlayerData(playerOneIndex), nimSystem.getPlayerData(playerTwoIndex));
+			NimGame game = new NimGame(initialStones, upperBound, playerCenter.getPlayerData(playerOneIndex), playerCenter.getPlayerData(playerTwoIndex));
 			result = game.gameLauncher();
 			if (result.equals("first player wins")) {
-				nimSystem.playerWin(playerOneIndex);
-				nimSystem.playerLose(playerTwoIndex);
+				playerCenter.playerWin(playerOneIndex);
+				playerCenter.playerLose(playerTwoIndex);
 			} else if (result.equals("second player wins")) {
-				nimSystem.playerLose(playerOneIndex);
-				nimSystem.playerWin(playerTwoIndex);
+				playerCenter.playerLose(playerOneIndex);
+				playerCenter.playerWin(playerTwoIndex);
 			}
 		} else {
 			System.out.println("One of the players does not exist.");
@@ -178,8 +178,8 @@ public class IOInterface {
 				comRemoveplayer();
 			} else if (command[0].equals("editplayer")) {
 				comEditplayer();
-			} else if (command[0].equals("resetstates")) {
-				comResetstates();
+			} else if (command[0].equals("resetstats")) {
+				comResetstats();
 			} else if (command[0].equals("displayplayer")) {
 				comDisplayplayer();
 			} else if (command[0].equals("rankings")) {

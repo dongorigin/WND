@@ -1,12 +1,12 @@
-package au.edu.unimelb.benz.projb;
+package au.edu.unimelb.benz.projb.betatest;
 
 import java.util.*;
 
-public class NimSys {
+public class PlayerCenter {
 	
 	private ArrayList<PlayerData> playerList;
 
-	public NimSys() {
+	public PlayerCenter() {
 		playerList = new ArrayList<PlayerData>();
 	}
 
@@ -112,10 +112,5 @@ public class NimSys {
 		
 		return displayIndex;
 	}
-	
-	
-	
-	
-	
 }// end class
 
